@@ -22,9 +22,7 @@ export class ItemComponent implements OnInit {
   }
 
   deleteItemClick() {
-    // console.log(this.item);
     this.itemClicked.emit(this.item);
-    // return this.item;
   }
 
 }

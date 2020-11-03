@@ -7,7 +7,7 @@
       <li>Shopping Cart</li>
     </ul>
 
-    <span class="count">{{getTotalItems(items)}} items in the bag</span>
+    <span class="count">{{getTotalItems(items) | number}} items in the bag</span>
   </header>
 
   <section class="container">
@@ -28,9 +28,9 @@
 
     <div class="summary" *ngIf="items">
       <ul>
-        <li>Subtotal <span>${{getSubtotal(items).toFixed(2)}}</span></li>
-        <li>Tax <span>${{(getSubtotal(items) * 0.1).toFixed(2)}}</span></li>
-        <li class="total">Total <span>${{(getSubtotal(items) + getSubtotal(items) * 0.1).toFixed(2)}}</span></li>
+        <li>Subtotal <span>{{getSubtotal(items) | currency:'VND'}}</span></li>
+        <li>Tax <span>{{(getSubtotal(items) * 0.1 | currency:'VND')}}</span></li>
+        <li class="total">Total <span>{{(getSubtotal(items) + getSubtotal(items) * 0.1) | currency:'VND'}}</span></li>
       </ul>
     </div>
 

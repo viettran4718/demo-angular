@@ -13,22 +13,22 @@ export class ShoppingCartComponent implements OnInit {
       img: 'assets/img/thuy.jpg',
       name: 'Item 1',
       description: 'Description for product item number 1',
-      price: 5.99,
-      quantity: 0,
+      price: 50000,
+      quantity: 1,
     },
     {
       img: 'assets/img/thuy.jpg',
-      name: 'Item 1',
-      description: 'Description for product item number 1',
-      price: 5.99,
-      quantity: 0,
+      name: 'Item 2',
+      description: 'Description for product item number 2',
+      price: 20000,
+      quantity: 2,
     },
     {
       img: '',
-      name: 'Item 2',
-      description: 'Description for product item number 2',
-      price: 9.99,
-      quantity: 0,
+      name: 'Item 3',
+      description: 'Description for product item number 3',
+      price: 6000000,
+      quantity: 3,
     },
   ];
 
@@ -54,11 +54,17 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   delete(item) {
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i] === item) {
-        const index = this.items.indexOf(item);
-        if (index > -1) {
-          this.items.splice(index, 1);
+    const isConfirm = confirm('Xác nhận xóa bản ghi!');
+
+    if (!isConfirm) {
+      return;
+    } else {
+      for (let i = 0; i < this.items.length; i++) {
+        if (this.items[i] === item) {
+          const index = this.items.indexOf(item);
+          if (index > -1) {
+            this.items.splice(index, 1);
+          }
         }
       }
     }
