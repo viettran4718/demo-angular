@@ -1,0 +1,41 @@
+<main>
+  <header class="container">
+    <h1>Shopping Cart</h1>
+
+    <ul class="breadcrumb">
+      <li>Home</li>
+      <li>Shopping Cart</li>
+    </ul>
+
+    <span class="count">{{getTotalItems(items)}} items in the bag</span>
+  </header>
+
+  <section class="container">
+    <ul class="products">
+
+      <li *ngFor="let item of items; index as i; first as isFirst" class="row">
+        <app-item [item]="item" (itemClicked)="delete($event)"></app-item>
+      </li>
+    </ul>
+  </section>
+
+  <section class="container">
+    <div class="promotion">
+      <label for="promo-code">Have A Promo Code?</label>
+      <input type="text" id="promo-code"/>
+      <button type="button"></button>
+    </div>
+
+    <div class="summary" *ngIf="items">
+      <ul>
+        <li>Subtotal <span>${{getSubtotal(items).toFixed(2)}}</span></li>
+        <li>Tax <span>${{(getSubtotal(items) * 0.1).toFixed(2)}}</span></li>
+        <li class="total">Total <span>${{(getSubtotal(items) + getSubtotal(items) * 0.1).toFixed(2)}}</span></li>
+      </ul>
+    </div>
+
+    <div class="checkout">
+      <button type="button">Check Out</button>
+    </div>
+  </section>
+</main>
