@@ -24,7 +24,7 @@ export class ShoppingCartComponent implements OnInit {
       quantity: 2,
     },
     {
-      img: '',
+      img: 'assets/img/viet.jpg',
       name: 'Item 3',
       description: 'Description for product item number 3',
       price: 6000000,
