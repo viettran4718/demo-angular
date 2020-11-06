@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../models/product';
+import {ShoppingCartService} from './shopping-cart.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -11,46 +12,45 @@ export class ShoppingCartComponent implements OnInit {
   items: Product[] = [
     {
       img: 'assets/img/thuy.jpg',
-      name: 'Item 1',
-      description: 'Description for product item number 1',
+      name: 'Kangaroo',
+      description: 'Dùng để ngắm từ xa ',
       price: 50000,
-      quantity: 1,
+      quantity: 0,
     },
     {
-      img: 'assets/img/thuy.jpg',
-      name: 'Item 2',
-      description: 'Description for product item number 2',
-      price: 20000,
-      quantity: 2,
+      img: 'assets/img/idol.jpg',
+      name: 'Idol Bảo Ngọc',
+      description: 'Dùng để ngắm cả từ xa lẫn gần',
+      price: 1000000,
+      quantity: 0,
     },
     {
       img: 'assets/img/viet.jpg',
-      name: 'Item 3',
-      description: 'Description for product item number 3',
+      name: 'Author đẹp trai',
+      description: 'Quá nhiều tài năng, thích dùng để làm gì cũng được',
       price: 6000000,
-      quantity: 3,
+      quantity: 0,
     },
   ];
 
-  totalItems = 3;
-  subtotal = 31;
+  constructor(public shoppingCartService: ShoppingCartService) {
+  }
 
   getSubtotal(items: Product[]) {
-    let result = 0;
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < items.length; i++) {
-      result += items[i].price * items[i].quantity;
-    }
-    return result;
+
+    return this.shoppingCartService.getSubtotal(items);
+  }
+
+  getTax(items: Product[]) {
+    return this.shoppingCartService.getTax(items);
+  }
+
+  getFinalPrice(items: Product[]) {
+    return this.shoppingCartService.getFinalPrice(items);
   }
 
   getTotalItems(items: Product[]) {
-    let result = 0;
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < items.length; i++) {
-      result += items[i].quantity;
-    }
-    return result;
+    return this.shoppingCartService.getTotalItems(items);
   }
 
   delete(item) {
@@ -70,10 +70,9 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
+  applyPromotionCode() {
+    this.shoppingCartService.applyPromotionCode();
 
-  constructor() {
-    this.totalItems = this.getTotalItems(this.items);
-    this.subtotal = this.getSubtotal(this.items);
   }
 
   ngOnInit(): void {

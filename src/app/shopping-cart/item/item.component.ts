@@ -25,4 +25,19 @@ export class ItemComponent implements OnInit {
     this.itemClicked.emit(this.item);
   }
 
+  validate() {
+    const reg = new RegExp('^[0-9]$');
+    if (reg.test(this.item.quantity + '')) {
+      let numberToString: string = this.item.quantity + '';
+      numberToString = numberToString.replace('-', '');
+      console.log(numberToString);
+      numberToString = numberToString.replace('e', '');
+      console.log(numberToString);
+      if (numberToString) {
+        this.item.quantity = Number(numberToString);
+      }
+    }
+
+  }
+
 }
