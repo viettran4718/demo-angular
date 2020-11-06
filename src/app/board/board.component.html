@@ -1,0 +1,77 @@
+<div class="header">
+  <h1>VIETTRAN BOARD</h1>
+</div>
+
+
+<div class="row">
+  <div cdkDropListGroup>
+    <div class="example-container">
+      <h2>To do({{todo.length}})</h2>
+
+      <div
+        cdkDropList
+        [cdkDropListData]="todo"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+      </div>
+
+      <div class="input">
+        <mat-form-field class="example-full-width">
+          <mat-label>Toto item</mat-label>
+          <input matInput color="accent" (keyup.enter)="addTodoItem()" [(ngModel)]="todoInputItem">
+        </mat-form-field>
+        <button mat-button color="primary" (click)="addTodoItem()">Add</button>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Doing({{doing.length}})</h2>
+
+      <div
+        cdkDropList
+        [cdkDropListData]="doing"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of doing" cdkDrag>{{item}}</div>
+      </div>
+
+      <div class="input">
+        <mat-form-field class="example-full-width">
+          <mat-label>Doing item</mat-label>
+          <input matInput color="accent" (keyup.enter)="addDoingItem()" [(ngModel)]="doingInputItem">
+        </mat-form-field>
+        <button mat-button color="primary" (click)="addDoingItem()">Add</button>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Done({{done.length}})</h2>
+
+      <div
+        cdkDropList
+        [cdkDropListData]="done"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+      </div>
+
+      <div class="input">
+        <mat-form-field class="example-full-width">
+          <mat-label>Done item</mat-label>
+          <input matInput color="accent" (keyup.enter)="addDoneItem()" [(ngModel)]="doneInputItem">
+        </mat-form-field>
+        <button mat-button color="primary" (click)="addDoneItem()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<mat-grid-list cols="4">-->
+<!--  <mat-grid-tile>-->
+<!--    -->
+
+<!--  </mat-grid-tile>-->
+<!--  <mat-grid-tile>2</mat-grid-tile>-->
+<!--  <mat-grid-tile>3</mat-grid-tile>-->
+<!--  <mat-grid-tile>4</mat-grid-tile>-->
+<!--</mat-grid-list>-->
