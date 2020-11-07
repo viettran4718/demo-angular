@@ -9,7 +9,7 @@ import {ShoppingCartService} from './shopping-cart.service';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  items: Product[] = [
+  initItems: Product[] = [
     {
       img: 'assets/img/thuy.jpg',
       name: 'Kangaroo',
@@ -32,8 +32,10 @@ export class ShoppingCartComponent implements OnInit {
       quantity: 0,
     },
   ];
+  items: Product[] = [];
 
   constructor(public shoppingCartService: ShoppingCartService) {
+    // this.items = Object.assign([], this.initItems);
   }
 
   getSubtotal(items: Product[]) {
@@ -73,6 +75,11 @@ export class ShoppingCartComponent implements OnInit {
   applyPromotionCode() {
     this.shoppingCartService.applyPromotionCode();
 
+  }
+
+  refreshItems(){
+    this.items = Object.assign([], this.initItems);
+    console.log(this.items);
   }
 
   ngOnInit(): void {

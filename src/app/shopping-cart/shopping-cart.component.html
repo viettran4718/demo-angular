@@ -9,34 +9,43 @@
 
     <span class="count">{{getTotalItems(items) | number}} items in the bag</span>
   </header>
+  <div *ngIf="(items && items.length>0); else elseBlock">
+    <section class="container">
+      <ul class="products">
 
-  <section class="container">
-    <ul class="products">
-
-      <li *ngFor="let item of items; index as i; first as isFirst" class="row">
-        <app-item [item]="item" (itemClicked)="delete($event)"></app-item>
-      </li>
-    </ul>
-  </section>
-
-  <section class="container">
-    <div class="promotion">
-      <label for="promo-code">Have A Promo Code?</label>
-      <input type="text" id="promo-code" [(ngModel)]="shoppingCartService.promotionCode"/>
-      <button type="button" (click)="applyPromotionCode()"></button>
-    </div>
-
-    <div class="summary" *ngIf="items">
-      <ul>
-        <li>Subtotal <span>{{getSubtotal(items) | currency:'VND'}}</span></li>
-        <li>Tax <span>{{(getTax(items) | currency:'VND')}}</span></li>
-        <li *ngIf="shoppingCartService.discount">Discount <span>{{shoppingCartService.discount}}%</span></li>
-        <li class="total">Total <span>{{getFinalPrice(items) | currency:'VND'}}</span></li>
+        <li *ngFor="let item of items; index as i; first as isFirst" class="row">
+          <app-item [item]="item" (itemClicked)="delete($event)"></app-item>
+        </li>
       </ul>
-    </div>
+    </section>
 
-    <div class="checkout">
-      <button type="button">Check Out</button>
+    <section class="container">
+      <div class="promotion">
+        <label for="promo-code">Have A Promo Code?</label>
+        <input type="text" id="promo-code" [(ngModel)]="shoppingCartService.promotionCode"/>
+        <button type="button" (click)="applyPromotionCode()"></button>
+      </div>
+
+      <div class="summary" *ngIf="items">
+        <ul>
+          <li>Subtotal <span>{{getSubtotal(items) | currency:'VND'}}</span></li>
+          <li>Tax <span>{{(getTax(items) | currency:'VND')}}</span></li>
+          <li *ngIf="shoppingCartService.discount">Discount <span>{{shoppingCartService.discount}}%</span></li>
+          <li class="total">Total <span>{{getFinalPrice(items) | currency:'VND'}}</span></li>
+        </ul>
+      </div>
+
+      <div class="checkout">
+        <button type="button">Check Out</button>
+      </div>
+    </section>
+  </div>
+
+  <ng-template #elseBlock>
+    <div>
+      <button (click)="refreshItems()" type="button">Shop now</button>
     </div>
-  </section>
+  </ng-template>
+
+
 </main>

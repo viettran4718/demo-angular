@@ -16,6 +16,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatIconModule} from '@angular/material/icon';
 
 const routes: Routes = [
   {path: 'shopping-cart', component: ShoppingCartComponent}
@@ -41,6 +44,9 @@ const routes: Routes = [
     MatListModule,
     MatButtonModule,
     DragDropModule,
+    MatToolbarModule,
+    FlexLayoutModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

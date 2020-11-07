@@ -1,71 +1,52 @@
-<div class="header">
-  <h1>VIETTRAN BOARD</h1>
-</div>
+<div>
+
+  <mat-toolbar color="primary" fxLayoutAlign="center center">
+    <span>VIETTRAN BOARD</span>
+  </mat-toolbar>
 
 
-<div class="row">
-  <div cdkDropListGroup>
-    <div class="example-container">
-      <h2>To do({{todo.length}})</h2>
+  <div class="main-board" cdkDropListGroup>
 
-      <div
-        cdkDropList
-        [cdkDropListData]="todo"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
-      </div>
+    <mat-card class="card" *ngFor="let board of boards" fxFlex>
 
-      <div class="input">
-        <mat-form-field class="example-full-width">
-          <mat-label>Toto item</mat-label>
-          <input matInput color="accent" (keyup.enter)="addTodoItem()" [(ngModel)]="todoInputItem">
+      <mat-card-title fxLayoutAlign="space-between center">
+        {{board.title | uppercase }}({{board.items.length}})
+        <button mat-icon-button (click)="deleteBoard(board)"><mat-icon color="accent">delete</mat-icon></button>
+      </mat-card-title>
+
+      <mat-card-content>
+        <div
+          cdkDropList
+          [cdkDropListData]="board.items"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of board.items" cdkDrag>{{item}}</div>
+        </div>
+      </mat-card-content>
+
+      <form>
+        <mat-form-field fxFlex>
+          <input matInput placeholder="New Job" [(ngModel)]="board.typing" name="board.typing">
+          <button mat-flat-button color="primary" matSuffix (click)="addItemInBoard(board)" >
+            <mat-icon>add</mat-icon>
+            Add
+          </button>
         </mat-form-field>
-        <button mat-button color="primary" (click)="addTodoItem()">Add</button>
-      </div>
-    </div>
+      </form>
+    </mat-card>
 
-    <div class="example-container">
-      <h2>Doing({{doing.length}})</h2>
-
-      <div
-        cdkDropList
-        [cdkDropListData]="doing"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of doing" cdkDrag>{{item}}</div>
-      </div>
-
-      <div class="input">
-        <mat-form-field class="example-full-width">
-          <mat-label>Doing item</mat-label>
-          <input matInput color="accent" (keyup.enter)="addDoingItem()" [(ngModel)]="doingInputItem">
+    <mat-card class="card" >
+      <form>
+        <mat-form-field fxFlex>
+          <input matInput placeholder="New List" [(ngModel)]="boardPlus" name="boardPlus">
+          <button mat-flat-button color="primary" matSuffix (click)="addBoard()"><mat-icon>add</mat-icon> Add</button>
         </mat-form-field>
-        <button mat-button color="primary" (click)="addDoingItem()">Add</button>
-      </div>
-    </div>
-
-    <div class="example-container">
-      <h2>Done({{done.length}})</h2>
-
-      <div
-        cdkDropList
-        [cdkDropListData]="done"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
-      </div>
-
-      <div class="input">
-        <mat-form-field class="example-full-width">
-          <mat-label>Done item</mat-label>
-          <input matInput color="accent" (keyup.enter)="addDoneItem()" [(ngModel)]="doneInputItem">
-        </mat-form-field>
-        <button mat-button color="primary" (click)="addDoneItem()">Add</button>
-      </div>
-    </div>
+      </form>
+    </mat-card>
   </div>
 </div>
+
+
 <!--<mat-grid-list cols="4">-->
 <!--  <mat-grid-tile>-->
 <!--    -->

@@ -15,7 +15,7 @@
 
 <div class="col right">
   <div class="quantity">
-    <input type="number" (input)="validate()" class="quantity" step="1" value="2" [(ngModel)]="item.quantity"/>
+    <input type="number" #quantityInput (input)="validate()" class="quantity" step="1" [(ngModel)]="item.quantity"/>
   </div>
 
   <div class="remove" (click)="deleteItemClick()">
