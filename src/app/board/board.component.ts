@@ -39,12 +39,28 @@ export class BoardComponent {
     typing: ''
   };
 
-  boards: Board [];
-
+  boards: Board [] = [];
+  listTask: string [] = [];
   boardPlus: string;
 
   constructor() {
-    this.boards = [this.board1, this.board2, this.board3];
+    this.boards = this.getBoards();
+    if (!this.boards || this.boards.length == 0) {
+      this.boards = [this.board1, this.board2, this.board3];
+    }
+    this.updateBoards();
+    for (const board of this.boards) {
+      this.listTask = this.listTask.concat(board.items);
+    }
+  }
+
+  getBoards(): Board [] {
+    return JSON.parse(localStorage.getItem('board'));
+  }
+
+  updateBoards() {
+    localStorage.setItem('board', JSON.stringify(this.boards));
+    console.log('Updated to local storage');
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -56,13 +72,19 @@ export class BoardComponent {
         event.previousIndex,
         event.currentIndex);
     }
+    this.updateBoards();
   }
 
   addItemInBoard(board) {
-    // tslint:disable-next-line:no-unused-expression
     if (board.typing) {
+      if (this.listTask.indexOf(board.typing) >= 0) {
+        alert('Item is exists');
+        return;
+      }
       board.items.push(board.typing);
+      this.listTask.push(board.typing);
       board.typing = '';
+      this.updateBoards();
     }
   }
 
@@ -73,35 +95,28 @@ export class BoardComponent {
       board.items = [];
       board.typing = '';
       this.boards.push(board);
+      this.updateBoards();
     }
     this.boardPlus = '';
   }
 
   deleteBoard(board: Board) {
-    const index = this.boards.indexOf(board);
-    if (index > 0) {
-      this.boards.splice(index);
+    if (confirm('Delete?')) {
+      const index = this.boards.indexOf(board);
+      if (index >= 0) {
+        this.boards.splice(index, 1);
+        this.updateBoards();
+      }
     }
   }
 
-  // addTodoItem() {
-  //   if (this.todoInputItem) {
-  //     this.todo.push(this.todoInputItem);
-  //   }
-  //   this.todoInputItem = '';
-  // }
-  //
-  // addDoingItem() {
-  //   if (this.doingInputItem) {
-  //     this.doing.push(this.doingInputItem);
-  //   }
-  //   this.doingInputItem = '';
-  // }
-  //
-  // addDoneItem() {
-  //   if (this.doneInputItem) {
-  //     this.done.push(this.doneInputItem);
-  //   }
-  //   this.doneInputItem = '';
-  // }
+  deleteItemInBoard(item: string, board: Board) {
+    if (confirm('Delete?')) {
+      const index = board.items.indexOf(item);
+      if (index >= 0) {
+        board.items.splice(index, 1);
+        this.updateBoards();
+      }
+    }
+  }
 }

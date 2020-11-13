@@ -1,4 +1,4 @@
-<div>
+<div (change)="updateBoards()">
 
   <mat-toolbar color="primary" fxLayoutAlign="center center">
     <span>VIETTRAN BOARD</span>
@@ -11,7 +11,9 @@
 
       <mat-card-title fxLayoutAlign="space-between center">
         {{board.title | uppercase }}({{board.items.length}})
-        <button mat-icon-button (click)="deleteBoard(board)"><mat-icon color="accent">delete</mat-icon></button>
+        <button mat-icon-button (click)="deleteBoard(board)">
+          <mat-icon color="accent">delete</mat-icon>
+        </button>
       </mat-card-title>
 
       <mat-card-content>
@@ -20,14 +22,19 @@
           [cdkDropListData]="board.items"
           class="example-list"
           (cdkDropListDropped)="drop($event)">
-          <div class="example-box" *ngFor="let item of board.items" cdkDrag>{{item}}</div>
+          <div class="example-box" *ngFor="let item of board.items" cdkDrag>{{item}}
+            <button mat-icon-button (click)="deleteItemInBoard(item,board)">
+              <mat-icon color="accent">delete</mat-icon>
+            </button>
+          </div>
+
         </div>
       </mat-card-content>
 
       <form>
         <mat-form-field fxFlex>
           <input matInput placeholder="New Job" [(ngModel)]="board.typing" name="board.typing">
-          <button mat-flat-button color="primary" matSuffix (click)="addItemInBoard(board)" >
+          <button mat-flat-button color="primary" matSuffix (click)="addItemInBoard(board)">
             <mat-icon>add</mat-icon>
             Add
           </button>
@@ -35,11 +42,14 @@
       </form>
     </mat-card>
 
-    <mat-card class="card" >
+    <mat-card class="card">
       <form>
         <mat-form-field fxFlex>
           <input matInput placeholder="New List" [(ngModel)]="boardPlus" name="boardPlus">
-          <button mat-flat-button color="primary" matSuffix (click)="addBoard()"><mat-icon>add</mat-icon> Add</button>
+          <button mat-flat-button color="primary" matSuffix (click)="addBoard()">
+            <mat-icon>add</mat-icon>
+            Add
+          </button>
         </mat-form-field>
       </form>
     </mat-card>
