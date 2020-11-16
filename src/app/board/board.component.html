@@ -32,7 +32,7 @@
       </mat-card-content>
 
       <form>
-        <mat-form-field fxFlex>
+        <mat-form-field class="inputJob">
           <input matInput placeholder="New Job" [(ngModel)]="board.typing" name="board.typing">
           <button mat-flat-button color="primary" matSuffix (click)="addItemInBoard(board)">
             <mat-icon>add</mat-icon>
