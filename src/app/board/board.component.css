@@ -20,21 +20,41 @@
 
 }
 
-.inputJob{
+.input-job {
+  display: flex;
+  flex-wrap: nowrap;
+  max-width: 25%;
+}
+
+.input-aa{
+  max-width: 25%;
+}
+.input-aa{
+  max-width: 10%;
+}
+
+.input-card {
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
 }
 
-.
-main-board {
+.main-board {
+  display: flex;
   flex: 1 1 auto;
   overflow-y: auto;
+}
 
-  /*display: flex;*/
-  /*flex-wrap: wrap;*/
-  /*justify-content: flex-start;*/
-  /*align-items: baseline;*/
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-toolbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card {

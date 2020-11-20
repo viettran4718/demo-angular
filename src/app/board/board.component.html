@@ -1,15 +1,15 @@
 <div (change)="updateBoards()">
 
-  <mat-toolbar color="primary" fxLayoutAlign="center center">
+  <mat-toolbar color="primary">
     <span>VIETTRAN BOARD</span>
   </mat-toolbar>
 
 
   <div class="main-board" cdkDropListGroup>
 
-    <mat-card class="card" *ngFor="let board of boards" fxFlex>
+    <mat-card class="card" *ngFor="let board of boards">
 
-      <mat-card-title fxLayoutAlign="space-between center">
+      <mat-card-title class="card-title">
         {{board.title | uppercase }}({{board.items.length}})
         <button mat-icon-button (click)="deleteBoard(board)">
           <mat-icon color="accent">delete</mat-icon>
@@ -30,21 +30,22 @@
 
         </div>
       </mat-card-content>
-
-      <form>
-        <mat-form-field class="inputJob">
-          <input matInput placeholder="New Job" [(ngModel)]="board.typing" name="board.typing">
-          <button mat-flat-button color="primary" matSuffix (click)="addItemInBoard(board)">
-            <mat-icon>add</mat-icon>
-            Add
-          </button>
-        </mat-form-field>
-      </form>
+      <div class="card">
+        <form >
+          <mat-form-field>
+            <input matInput placeholder="New Job" class="input-aa" [(ngModel)]="board.typing" name="board.typing">
+            <button mat-flat-button color="primary" matSuffix (click)="addItemInBoard(board)">
+              <mat-icon>add</mat-icon>
+              Add
+            </button>
+          </mat-form-field>
+        </form>
+      </div>
     </mat-card>
 
-    <mat-card class="card">
+    <mat-card class="input-card">
       <form>
-        <mat-form-field fxFlex>
+        <mat-form-field>
           <input matInput placeholder="New List" [(ngModel)]="boardPlus" name="boardPlus">
           <button mat-flat-button color="primary" matSuffix (click)="addBoard()">
             <mat-icon>add</mat-icon>

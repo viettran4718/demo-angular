@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+
+    <form [formGroup]="loginForm" (submit)="onSubmit()">
+      <div class="input-with-icon">
+        <i class="material-icons prefix">supervisor_account</i>
+        <mat-form-field>
+          <input formControlName="username" matInput placeholder="Username" type="text">
+          <mat-error *ngIf="f.username.hasError('required')">Username is required</mat-error>
+          <mat-error *ngIf="f.username.hasError('minlength')">Username must be at least 6 characters</mat-error>
+
+        </mat-form-field>
+      </div>
+
+      <div class="input-with-icon">
+        <i class="material-icons prefix">lock_outline</i>
+        <mat-form-field>
+          <input formControlName="password" matInput placeholder="Password" type="password" class="form-control" (keyup.enter)="onSubmit()">
+          <mat-error *ngIf="f.password.hasError('required')">Password is required</mat-error>
+          <mat-error *ngIf="f.password.hasError('minlength')">Password must be at least 6 characters</mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <div class="form-group">
+        <button [disabled]="loginForm.invalid || loading" type="submit" mat-button>
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Login
+        </button>
+        <button routerLink="/register" color="primary" mat-button>
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Register
+        </button>
+      </div>
+    </form>

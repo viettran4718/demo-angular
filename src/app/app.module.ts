@@ -17,11 +17,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './authenticate/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { LogoutComponent } from './authenticate/logout/logout.component';
 
 const routes: Routes = [
   {path: 'shopping-cart', component: ShoppingCartComponent}
@@ -35,12 +37,13 @@ const routes: Routes = [
     BoardComponent,
     LoginComponent,
     DashboardComponent,
-    UserComponent
+    UserComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(routes, {relativeLinkResolution: 'legacy'}),
     FormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
@@ -51,9 +54,10 @@ const routes: Routes = [
     MatButtonModule,
     DragDropModule,
     MatToolbarModule,
-    FlexLayoutModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
