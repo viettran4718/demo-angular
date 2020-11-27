@@ -1,0 +1,74 @@
+<div class="main-content">
+  <form (submit)="save()" [formGroup]="editForm">
+    <h2>Create or edit a User</h2>
+
+    <div class="example-container">
+
+      <div>
+        <input formControlName="id" type="hidden">
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input formControlName="username" matInput placeholder="Username" type="text">
+          <mat-error *ngIf="f.username.hasError('required')">Username is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Full name</mat-label>
+          <input formControlName="fullname" matInput placeholder="Full name" type="text">
+          <mat-error *ngIf="f.fullname.hasError('required')">Full name is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Phone number</mat-label>
+          <input formControlName="phoneNumber" matInput placeholder="phoneNumber" type="text">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput placeholder="Email" type="text">
+          <mat-error *ngIf="f.email.hasError('email')">Email is invalid</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-checkbox formControlName="isApproved">Approve</mat-checkbox>
+        <mat-checkbox formControlName="isDeleted">Delete</mat-checkbox>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input formControlName="birthday" matInput type="date">
+        </mat-form-field>
+      </div>
+
+      <!--        <div>-->
+      <!--          <mat-form-field>-->
+      <!--            <mat-select formControlName="role" placeholder="Role">-->
+      <!--              <mat-option *ngFor="let role of listRole" [value]="role.value">-->
+      <!--                {{ role.text }}-->
+      <!--              </mat-option>-->
+      <!--            </mat-select>-->
+      <!--          </mat-form-field>-->
+      <!--        </div>-->
+
+    </div>
+
+    <div>
+      <button (click)="previousState()" [disabled]="loading" class="btn btn-secondary" id="cancel-save" type="button">
+        &nbsp;<span>Cancel</span>
+      </button>
+
+      <button [disabled]="editForm.invalid || isSaving" class="btn btn-primary" id="save-entity" type="submit">
+        <span>Save</span>
+      </button>
+    </div>
+  </form>
+</div>

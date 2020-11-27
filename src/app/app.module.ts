@@ -24,6 +24,10 @@ import { UserComponent } from './user/user.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { LogoutComponent } from './authenticate/logout/logout.component';
+import {UserAddComponent} from './user/user-add.component';
+import {UserDeleteDialogComponent} from './user/user-delete-dialog.component';
+import {UserUpdateComponent} from './user/user-update.component';
+import {UserDetailComponent} from './user/user-detail.component';
 
 const routes: Routes = [
   {path: 'shopping-cart', component: ShoppingCartComponent}
@@ -37,8 +41,13 @@ const routes: Routes = [
     BoardComponent,
     LoginComponent,
     DashboardComponent,
-    UserComponent,
     LogoutComponent,
+
+    UserComponent,
+    UserAddComponent,
+    UserDeleteDialogComponent,
+    UserUpdateComponent,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,
